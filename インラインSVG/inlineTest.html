@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+	<title>インラインSVGでレーダーチャートを作る</title>
+  </head>
+  <script src="jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+  $(function(){
+  	var statusPoints = null
+  	var circlesTags = ""
+  	//赤い多角形の頂点に円を載せる
+  	statusPoints = ($(".status").attr('points').split(" "));
+  	for(var i = 0; i<statusPoints.length; i++){
+  		circlesTags += '<circle class="status_point" cx="' + parseInt(statusPoints[i].split(",")[0]) + '" cy="' + parseInt(statusPoints[i].split(",")[1]) + '" r="5" />'
+  	}
+  	$(".graph_foundation").append(circlesTags)
+  })
+  </script>
+  <style>
+	.graph_container{
+	  width: 400px;
+	  height: 400px;
+	}
+	.svg_container{
+	  width:302px;
+	  height:302px;
+	  float:left;
+	}
+	.graph_foundation polygon:nth-of-type(even) {
+		fill:none;
+		stroke: #7ac5e9;
+		stroke-width:1px;
+		stroke-dasharray:3px;
+	}
+	.graph_foundation polygon:nth-of-type(odd) {
+	  fill:none;
+	  stroke: #73868c;
+	  stroke-width:2px;
+	}
+	.graph_foundation circle {
+	  fill:#73868c;
+	}
+	div.svg_container polygon.status{
+		fill:#ff8e8e;
+		stroke: none;
+		filter:alpha(opacity=80);
+		-moz-opacity: 0.8;
+		opacity: 0.8;
+	}
+
+  </style>
+  <body>
+	  <div class="svg_container">
+		<svg class="graph_foundation">
+		  <polygon points="150,0 300,125 235,300 65,300 0,125"/>
+		  <polygon points="150,25 266.5,135 220.5,277.5 79.5,277.5 33.3,135" />
+		  <polygon points="150,55 243,140 206.5,255 93.5,255 56.6,140"/>
+		  <polygon points="150,80 220,150 192,232.5 107.2,232.5 79.9,150" />
+		  <polygon points="150,110 196,155 178,210 122,210 103.2,155" />
+		  <circle cx="150" cy="165" r="5" />
+		  <polygon class="status" points="150,55 300,125 206.5,255 65,300 33.3,135"/>
+		</svg>
+	  </div>
+  </body>
+</html>
