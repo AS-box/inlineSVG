@@ -7,36 +7,88 @@
   <script src="jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
   <script>
   $(function(){
-  	var statusPoints = null
+  	// drawStatusPoitns()
+	drawSelect()
+	var skills = {
+		html:[],
+		CSS:[],
+		javascript:[],
+		PHP:[],
+		Ruby:[]
+	}
   	var circlesTags = ""
-  	var select_skill_label =""
+  	var skillPoints = []
+  	drawGraphFoundation()
+  	// getLevelPoints()
+
+  	function makePolygons(dis){
+  		var points = "";
+		var degs = [-90,-18,54,126,198];
+		for (var i = 0; i < degs.length; i++)
+		{
+			var deg = degs[i];
+			var x = Math.cos(deg*Math.PI/180)*dis;
+			var y = Math.sin(deg*Math.PI/180)*dis;
+			points += (x+200) +","+ (y+200) + " ";
+		}
+		circlesTags += "<polygon points='"+ String(points) +"' />"
+		skillPoints.push(points)
+	}
+	function drawGraphFoundation(){
+		var distance = [200,150,100,50,0]
+		for(var i=0; i<distance.length; i++){
+  			makePolygons(distance[i])
+  		}
+		$(".svg_container").append('<svg class="graph_foundation">' + circlesTags + '</svg>')
+	}
+
+	// function getLevelPoints(){
+	// 	var levelPoints = []
+	// 	for(var i=0; i<skillPoints.length; i++){
+	// 		debugger
+	// 		points = skillPoints[i].split(" ")
+	// 		for(var j=0; j<points.length; j++){
+	// 			levelPoints.push(points[j])
+	// 		}
+	// 	}
+	// }
+
   	//赤い多角形の頂点に円を載せる
-  	statusPoints = ($(".status").attr('points').split(" "));
-  	for(var i = 0; i<statusPoints.length; i++){
-  		circlesTags += '<circle class="status_point" cx="' + parseInt(statusPoints[i].split(",")[0]) + '" cy="' + parseInt(statusPoints[i].split(",")[1]) + '" r="5" />'
+  	function drawStatusPoitns(){
+  		var statusPoints = null
+  		var circlesTags = ""
+	  	statusPoints = ($(".status").attr('points').split(" "));
+	  	for(var i = 0; i<statusPoints.length; i++){
+	  		circlesTags += '<circle class="status_point" cx="' + parseInt(statusPoints[i].split(",")[0]) + '" cy="' + parseInt(statusPoints[i].split(",")[1]) + '" r="5" />'
+	  	}
+	  	$(".graph_foundation").append('<svg class="graph_points	">' + circlesTags + '</svg>')
   	}
-  	$(".graph_foundation").append('<svg class="graph_points	">' + circlesTags + '</svg>')
 
   	//スキルごとのレベル選択HTML作成
-  	var skills = ["HTML","CSS","javascript","PHP","comunication"]
-  	var option = ""
-  	for(var i=0; i<6; i++){
-  			option += '<option value="レベル'+ [i] +'">レベル'+ [i] +'</option>'
-  		}
-  	for(var skill=0; skill<skills.length; skill++){
-  		select_skill_label +=  '<div class="skill_container" id="skill_container_'+skills[skill]+'"><lebel for="select_skil_'+ skills[skill] +'">'+ skills[skill] +'</label><select id="'+ skills[skill] +'">' + option +'</select></div>'
+  	function drawSelect(){
+  		var selectSkillLabel =""
+	  	var skills = ["HTML","CSS","javascript","PHP","comunication"]
+	  	var option = ""
+	  	for(var i=0; i<6; i++){
+	  			option += '<option value="レベル'+ [i] +'">レベル'+ [i] +'</option>'
+	  		}
+	  	for(var skill=0; skill<skills.length; skill++){
+	  		selectSkillLabel +=  '<div class="skill_container" id="skill_container_'+skills[skill]+'"><lebel for="select_skil_'+ skills[skill] +'">'+ skills[skill] +'</label><select id="'+ skills[skill] +'">' + option +'</select></div>'
+		}
+		$("#select_skill_lebel_container").append(selectSkillLabel)
 	}
-	$("#select_skill_lebel_container").append(select_skill_label)
   })
+	//スキルごとのレベル選択
+
   </script>
   <style>
 	.graph_container{
-	  width: 320px;
-	  height: 320px;
+	  width: 400px;
+	  height: 400px;
 	}
 	.svg_container{
-	  width:320px;
-	  height:320px;
+	  width:400px;
+	  height:400px;
 	  float:left;
 	}
 	.graph_foundation polygon:nth-of-type(even) {
@@ -64,15 +116,15 @@
   </style>
   <body>
 	<div class="svg_container">
+		  <!--<polygon points="150,0 300,125 235,300 65,300 0,125"/>
 		<svg class="graph_foundation">
-		  <polygon points="150,0 300,125 235,300 65,300 0,125"/>
-		  <polygon points="150,25 266.5,135 220.5,277.5 79.5,277.5 33.3,135" />
-		  <polygon points="150,55 243,140 206.5,255 93.5,255 56.6,140"/> 
+		   <polygon points="150,25 266.5,135 220.5,277.5 79.5,277.5 33.3,135" />
+		  <polygon points="150,55 243,140 206.5,255 93.5,255 56.6,140"/>
 		  <polygon points="150,80 220,150 192,232.5 107.2,232.5 79.9,150" />
 		  <polygon points="150,110 196,155 178,210 122,210 103.2,155" />
 		  <circle cx="150" cy="165" r="5" />
 		  <polygon class="status" points="150,55 300,125 206.5,255 65,300 33.3,135"/>
-		</svg>
+		</svg> -->
 	</div>
 	<div id="select_skill_lebel_container">
 	</div>
