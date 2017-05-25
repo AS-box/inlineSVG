@@ -85,10 +85,9 @@ canvasというHTHML５で追加されたビットマップ形式の画像を描
 作った土台の五角形の頂点からx,y座標セットを選んで、土台の五角形と同様に一番上の五角形を制作していきます。  
 （フォームで入力した値をもとにステータス多角形を作れたらおもしろそう（添付のHTMLでピンクの多角形））  
 また土台と同じようにCSSで装飾も加えましょう。  
-<HTML>
+
 `<polygon class="status" points="150,55 300,125 206.5,255 65,300 33.3,135"/>`
 
-<CSS>
     div.svg_container polygon.status{
       fill:#ff8e8e;
       stroke: none;
