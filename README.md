@@ -36,14 +36,16 @@ canvasというHTHML５で追加されたビットマップ形式の画像を描
 「points」は角となる座標をx,y座標をセットで指定します。  
 「fill」は塗りつぶす色を指定することができます。  
 「stroke」は線の色を指定することができます。  
-例）`<polygon points="x,y x,y x,y x,y" fill="#000000" stroke="#ff00000"　/> //黒字の赤線で四角形を描画  `
+
+`<polygon points="x,y x,y x,y x,y" fill="#000000" stroke="#ff00000"　/> //黒字の赤線で四角形を描画  `
 
 「circle」は「fill」「stroke」「cx」「cy」「r」の５つの属性をもっています  
 「fill」「stroke」はpolygonと同様です。  
 「cx」は円の中心のx座標を指定します。 
 「cy」は円の中心のy座標を指定します。  
 「r」は円の半径を指定することができます。  
-例）`<circle cx="x" cy="y" r="5" fill="#000000" stroke="#ff00000" /> //黒字の赤線で円を描写`
+
+`<circle cx="x" cy="y" r="5" fill="#000000" stroke="#ff00000" /> //黒字の赤線で円を描写`
 
 これらの要素を使って、まずチャートの土台の五角形を作っていきます。 
 
@@ -93,7 +95,7 @@ canvasというHTHML５で追加されたビットマップ形式の画像を描
       filter:alpha(opacity=80);
       -moz-opacity: 0.8;
       opacity: 0.8;
-     }
+    }
 
 これでチャートの上に赤い五角形がのりました。  
 この五角形のpointをjavascriptで取得して、それぞれの座標を使ってcircle要素  
