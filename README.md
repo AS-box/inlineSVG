@@ -86,7 +86,7 @@ canvasというHTHML５で追加されたビットマップ形式の画像を描
 （フォームで入力した値をもとにステータス多角形を作れたらおもしろそう（添付のHTMLでピンクの多角形））  
 また土台と同じようにCSSで装飾も加えましょう。  
 <HTML>
-    <polygon class="status" points="150,55 300,125 206.5,255 65,300 33.3,135"/>
+`<polygon class="status" points="150,55 300,125 206.5,255 65,300 33.3,135"/>`
 
 <CSS>
     div.svg_container polygon.status{
